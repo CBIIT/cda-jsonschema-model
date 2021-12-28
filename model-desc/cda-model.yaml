@@ -1,0 +1,463 @@
+'Nodes':
+  'CodeableConcept':
+    'Props':
+    - 'text'
+  'Coding':
+    'Props':
+    - 'code'
+    - 'display'
+    - 'system'
+    - 'version'
+  'Dataset':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'conformsTo'
+    - 'label'
+    - 'license'
+    - 'dct_title'
+    - 'wasGeneratedBy'
+  'Diagnosis':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'age_at_diagnosis'
+    - 'grade'
+    - 'harmonized_primary_diagnosis'
+    - 'morphology'
+    - 'primary_diagnosis'
+    - 'stage'
+    - 'research_subject'
+    - 'specimen'
+  'ExternalReference':
+    'Props':
+    - 'term_id'
+    - 'term_label'
+    - 'reference_url'
+    - 'version'
+  'File':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'label'
+    - 'byte_size'
+    - 'checksum'
+    - 'data_category'
+    - 'data_type'
+    - 'file_format'
+    - 'media_type'
+    - 'reference_assembly'
+  'Identifier':
+    'Props':
+    - 'system'
+    - 'type'
+    - 'value'
+  'Patient':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'taxon'
+    - 'label'
+    - 'days_to_birth'
+    - 'sex'
+    - 'ethnicity'
+    - 'race'
+  'Project':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'label'
+    - 'disease_site'
+    - 'disease_type'
+    - 'dbgap_accession'
+    - 'program'
+    - 'dct:title'
+  'Quantity':
+    'Props':
+    - 'value'
+  'ResearchSubject':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'primary_disease_site'
+    - 'primary_disease_type'
+    - 'harmonized_disease_type'
+  'Specimen':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'analyte_type'
+    - 'cellular_composition'
+    - 'derived_from_specimen'
+    - 'general_tissue_morphology'
+    - 'matched_normal_flag'
+    - 'qualification_status_flag'
+    - 'source_material_type'
+    - 'specific_tissue_morphology'
+    - 'specimen_type'
+    - 'age_at_collection'
+    - 'anatomical_site'
+  'Study':
+    'Props':
+    - 'label'
+    - 'system'
+    - 'value'
+    - 'embargo_date'
+    - 'dbgap_accession'
+  'Treatment':
+    'Props':
+    - 'describedBy'
+    - 'id'
+    - 'days_to_treatment_start'
+    - 'days_treatment_end'
+    - 'treatment_outcome'
+    - 'treatment_type'
+'PropDefinitions':
+  'age_at_collection':
+    'Desc': 'The age of the Patient when this sample was taken.'
+    'Type': 'integer'
+  'age_at_diagnosis':
+    'Desc': ''
+    'Type': 'integer'
+  'analyte_type':
+    'Desc': 'When the specimen is of type ''analyte'' or ''aliquot'', this is the
+      type of substance the analyte represents (e.g. DNA, RNA)'
+    'Enum':
+    - 'TBD'
+  'anatomical_site':
+    'Desc': 'Per GDC Dictionary, the text term that represents the name of the primary
+      disease site of the submitted tumor sample; recommend dropping tumor; biospecimen_anatomic_site.'
+    'Type': 'string'
+  'byte_size':
+    'Desc': 'Size of the file in bytes. Maps to dcat:byteSize.'
+    'Type': 'number'
+  'cellular_composition':
+    'Desc': 'The cellular composition of the sample'
+    'Enum':
+    - 'TBD'
+  'checksum':
+    'Desc': ' '
+    'Type': 'string'
+  'code':
+    'Desc': 'The value of the code itself.'
+    'Type': 'string'
+  'conformsTo':
+    'Desc': 'An established standard to which the described resource conforms; for
+      CDA, https://github.com/CancerDataAggregator/cda-data-model. Maps to dcat:conformsTo.'
+    'Type': 'string'
+  'data_category':
+    'Desc': ' '
+    'Type': 'string'
+  'data_type':
+    'Desc': ' '
+    'Type': 'string'
+  'days_to_birth':
+    'Desc': 'Per GDC Dictionary, number of days between the date used for index and
+      the date from a person''s date of birth represented as a calculated negative
+      number of days.'
+    'Type': 'integer'
+  'days_to_treatment_start':
+    'Desc': 'The date and optionally time that the treatment was started in integer.'
+    'Type': 'string'
+  'days_treatment_end':
+    'Desc': 'The date and optionally time that the treatment was terminated in integer
+      format.'
+    'Type': 'string'
+  'dbgap_accession':
+    'Desc': 'The link to the dbgap accession record for data associated with this
+      Study. For MVP, will model this as a string, but this could be modeled as an
+      external reference.'
+    'Type': 'string'
+  'dct:title':
+    'Desc': 'Official project name. Maps to dct:title.'
+    'Req': true
+    'Type': 'string'
+  'dct_title':
+    'Desc': 'Official project name. Maps to dct:title.'
+    'Type': 'string'
+  'derived_from_specimen':
+    'Desc': 'A source/parent specimen from which this one was directly derived.'
+    'Type':
+      'item_type': 'string'
+      'value_type': 'list'
+  'describedBy':
+    'Desc': 'The URL reference to the JSON Schema that defines this object.'
+    'Req': true
+    'Type': 'string'
+  'disease_site':
+    'Desc': 'A list of the text terms used to describe the primary site of disease.'
+    'Type':
+      'item_type': 'string'
+      'value_type': 'list'
+  'disease_type':
+    'Desc': 'A list of the text terms used to describe the type of malignant disease. '
+    'Type':
+      'item_type': 'string'
+      'value_type': 'list'
+  'display':
+    'Desc': 'A human-readable name for the code.'
+    'Type': 'string'
+  'embargo_date':
+    'Desc': 'The date on which publication and release of data is permitted.  This
+      data is made available with the condition that it cannot be published or disseminated
+      before this date.  The field is represented as a string in this format: CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm].'
+    'Type': 'string'
+  'ethnicity':
+    'Desc': ''
+    'Type': 'string'
+  'file_format':
+    'Desc': 'String to identify the full file extension including compression extensions.'
+    'Type': 'string'
+  'general_tissue_morphology':
+    'Desc': "A term describing at a high-level the kind of tissue collected in a specimen,\
+      \ with respect to disease status or proximity to tumor tissue (e.g. is it normal,\
+      \ abnormal, tumor, tumor-adjacent). \n"
+    'Enum':
+    - 'TBD'
+  'grade':
+    'Desc': ''
+    'Type': 'string'
+  'harmonized_disease_type':
+    'Desc': 'Harmonized disease type based on CCDH model; for MVP, the ETL process
+      will consult the table of harmonized disease_types provided by CCDH to set this
+      value. GDC disease_type.  This may be removed from the model in future and replaced
+      with an API call that determines this value based submitting the CodeableConcept
+      to a vocabulary service which will return the canonical value to be used for
+      search.  In future, CCDH will provide a vocabulary service, allowing us to request
+      the canonical disease name for searching based on the CodeableConcept for disease_type
+      submitted by the DCs.  This field will not appear in data submitted by the DCs.'
+    'Type': 'string'
+  'harmonized_primary_diagnosis':
+    'Desc': ''
+    'Type': 'string'
+  'id':
+    'Desc': 'The ''logical'' identifier of the entity in the repository, e.g. a UUID.  This
+      ''id'' is unique within a given system. The identified entity may have a different
+      ''id'' in a different system.'
+    'Req': true
+    'Type': 'string'
+  'label':
+    'Desc': 'Human-readable name of the Study'
+    'Req': true
+    'Type': 'string'
+  'license':
+    'Desc': 'A legal document or data use agreement under which the resource is made
+      available. Maps to dct:license.'
+    'Type': 'string'
+  'matched_normal_flag':
+    'Desc': 'A flag indicating that there is no matched normal aliquot for this case
+      that can be used for variant calling purposes.'
+    'Type': 'boolean'
+  'media_type':
+    'Desc': 'Specific media type according to the Internet Assigned Numbers Authority
+      (IANA). String that captures dct:MediaType (https://www.iana.org/assignments/media-types/media-types.xhtml).'
+    'Type': 'string'
+  'morphology':
+    'Desc': ''
+    'Type': 'string'
+  'primary_diagnosis':
+    'Desc': ''
+    'Enum':
+    - 'TBD'
+  'primary_disease_site':
+    'Desc': 'The text term used to describe the primary site of disease (that qualifies
+      the ResearchSubject for this Project), as categorized by the World Health Organization''s
+      (WHO) International Classification of Diseases for Oncology (ICD-O). This categorization
+      groups cases into general categories.'
+    'Enum':
+    - 'TBD'
+  'primary_disease_type':
+    'Desc': 'The text term used to describe the type of malignant disease (that qualifies
+      the ResearchSubject for this Project), as categorized by the World Health Organization''s
+      (WHO) International Classification of Diseases for Oncology (ICD-O). '
+    'Enum':
+    - 'TBD'
+  'program':
+    'Desc': 'The text term used to describe the parent program for this project.'
+    'Type': 'string'
+  'qualification_status_flag':
+    'Desc': 'A flag indicating whether the specimen is qualified or disqualified for
+      data analysis in a study.'
+    'Type': 'boolean'
+  'race':
+    'Desc': ''
+    'Type': 'string'
+  'reference_assembly':
+    'Desc': 'URL or string representing the organism-specific reference assembly.'
+    'Type': 'string'
+  'reference_url':
+    'Desc': 'Ontology persistent URL. For example, http://purl.bioontology.org/ontology/NCBITAXON/ '
+    'Req': true
+    'Type': 'string'
+  'research_subject':
+    'Desc': 'Reference to the ResearchSubject UUID.'
+    'Type': 'string'
+  'sex':
+    'Desc': ''
+    'Type': 'string'
+  'source_material_type':
+    'Desc': 'The general kind of material from which the specimen was derived, indicating
+      the physical nature of the source material. '
+    'Type': 'string'
+  'specific_tissue_morphology':
+    'Desc': 'A term describing the specific pathology exhibited by the tissue in a
+      specimen.'
+    'Enum':
+    - 'TBD'
+  'specimen':
+    'Desc': 'Reference to the Specimen used for this diagnosis.'
+    'Type': 'string'
+  'specimen_type':
+    'Desc': "The high-level type of the specimen, based on its how it has been derived\
+      \ from the original extracted sample. \n"
+    'Type': 'string'
+  'stage':
+    'Desc': ''
+    'Type': 'string'
+  'system':
+    'Desc': 'The system or namespace that defines the Study.'
+    'Req': true
+    'Type': 'string'
+  'taxon':
+    'Desc': 'The taxonomic group (e.g. species) of the patient. For MVP, since taxonomy
+      vocabulary is consistent between GDC and PDC, using text.  Ultimately, this
+      will be a term returned by the vocabulary service.'
+    'Enum':
+    - 'TBD'
+  'term_id':
+    'Desc': 'Term identifier with prefix or full url. For example, 9606 for NCBITAXON
+      Human or phs'
+    'Req': true
+    'Type': 'string'
+  'term_label':
+    'Desc': 'Human-readable label for the term.  Maps to rdfs:label.'
+    'Req': true
+    'Type': 'string'
+  'text':
+    'Desc': 'A human language representation of the concept represented by the Coding'
+    'Type': 'string'
+  'treatment_outcome':
+    'Desc': 'Text name for treatment outcome; this will ultimately be defined by a
+      common vocabulary'
+    'Type': 'string'
+  'treatment_type':
+    'Desc': 'Text name for treatment type; this will ultimately be defined by a common
+      vocabulary'
+    'Type': 'string'
+  'type':
+    'Desc': 'A code that defines the type of the identifier.'
+    'Enum':
+    - 'TBD'
+  'value':
+    'Desc': 'The value of the identifier, as defined by the system.'
+    'Req': true
+    'Type': 'string'
+  'version':
+    'Desc': 'The version of the ontology or reference source.'
+    'Type': 'string'
+  'wasGeneratedBy':
+    'Desc': 'The project(s) responsible for generating this dataset.  These should
+      be references to the projects, UUID preferably. Maps to prov:wasGeneratedBy.'
+    'Type':
+      'item_type': 'string'
+      'value_type': 'list'
+'Relationships':
+  'associated_project':
+    'Desc': 'A reference to the Project(s) of which this ResearchSubject is a member.
+      The associated_project may be embedded using the $ref definition or may be a
+      reference to the id for the Project - or a URI expressed as a string to an existing
+      entity.'
+    'Ends':
+    - 'Dst': 'Project'
+      'Src': 'ResearchSubject'
+    'Mul': 'one_to_one'
+    'Req': true
+  'coding':
+    'Desc': 'A reference to a code defined by a terminology system'
+    'Ends':
+    - 'Dst': 'Coding'
+      'Src': 'CodeableConcept'
+    'Mul': 'one_to_many'
+  'comparator':
+    'Desc': 'How to understand the value  . . .   < | <= | >= | >'
+    'Ends':
+    - 'Dst': 'Coding'
+      'Src': 'Quantity'
+    'Mul': 'one_to_one'
+  'data_use_limitation':
+    'Desc': 'Ontology reference to DUO'
+    'Ends':
+    - 'Dst': 'ExternalReference'
+      'Src': 'Dataset'
+    'Mul': 'one_to_one'
+    'Req': true
+  'data_use_restriction':
+    'Desc': 'Ontology reference to DUO'
+    'Ends':
+    - 'Dst': 'ExternalReference'
+      'Src': 'Dataset'
+    'Mul': 'one_to_one'
+  'derived_from_subject':
+    'Desc': 'The Patient/ResearchSubject, or Biologically Derived Materal (e.g. a
+      cell line, tissue culture, organoid) from which the specimen was directly or
+      indirectly derived.'
+    'Ends':
+    - 'Dst': 'Patient'
+      'Src': 'Specimen'
+    'Mul': 'one_to_one'
+  'diagnosis':
+    'Desc': ''
+    'Ends':
+    - 'Dst': 'Diagnosis'
+      'Src': 'ResearchSubject'
+    'Mul': 'one_to_many'
+  'file':
+    'Desc': ''
+    'Ends':
+    - 'Dst': 'File'
+      'Src': 'ResearchSubject'
+    'Mul': 'one_to_many'
+  'identifier':
+    'Desc': 'A ''business'' identifier  or accession number for the entity, typically
+      as provided by an external system or authority, that persists across implementing
+      systems  (i.e. a  ''logical'' identifier). '
+    'Ends':
+    - 'Dst': 'Identifier'
+      'Src': 'Treatment'
+    'Mul': 'one_to_many'
+  'research_subject_list':
+    'Desc': 'A list of ResearchSubject identities for this Patient.  We could keep
+      a list of the Projects but the ResearchSubject mimics the use of case_id in
+      existing data.  All relevant data for each Project will be in the ResearchSubject.'
+    'Ends':
+    - 'Dst': 'ResearchSubject'
+      'Src': 'Patient'
+    'Mul': 'one_to_many'
+  'specimen':
+    'Desc': ''
+    'Ends':
+    - 'Dst': 'Specimen'
+      'Src': 'ResearchSubject'
+    'Mul': 'one_to_many'
+  'studies':
+    'Desc': 'List of studies associated with this Project. For POC, using this model
+      instead of Identifier due to confusion over type CodeableConcept; reconsider
+      for MVP.'
+    'Ends':
+    - 'Dst': 'Study'
+      'Src': 'Project'
+    'Mul': 'one_to_many'
+  'treatment':
+    'Desc': ''
+    'Ends':
+    - 'Dst': 'Treatment'
+      'Src': 'Diagnosis'
+    'Mul': 'one_to_many'
+  'unit':
+    'Desc': 'Unit representation (e.g. mg, mL)'
+    'Ends':
+    - 'Dst': 'Coding'
+      'Src': 'Quantity'
+    'Mul': 'one_to_one'
+'Terms': {}
+
