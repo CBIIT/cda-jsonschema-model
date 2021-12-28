@@ -1,3 +1,6 @@
 [submodule "cda-data-model"]
 	path = cda-data-model
 	url = https://github.com/CancerDataAggregator/cda-data-model
+[submodule "bento-mdf"]
+	path = bento-mdf
+	url = https://github.com/CBIIT/bento-mdf
