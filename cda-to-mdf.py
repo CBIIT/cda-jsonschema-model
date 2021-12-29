@@ -38,6 +38,7 @@ def ent_and_spec(hdl, p, defn, reqd=[]):
                 spec["Enum"] = ["TBD"]
             else: # another CDA entity
                 ent = "Relationship"
+                spec["Props"] = None
                 spec["Ends"] = spec.get("Ends") or []
                 spec["Ends"].append(
                     { "Src": hdl, "Dst": thing })
@@ -55,6 +56,7 @@ def ent_and_spec(hdl, p, defn, reqd=[]):
                         break
             if defn["items"].get("$ref"):
                 ent = "Relationship"
+                spec["Props"] = None
                 thing = get_thing(defn["items"]["$ref"])
                 spec["Ends"] = spec.get("Ends") or []
                 spec["Ends"].append(
@@ -99,15 +101,16 @@ for hdl in schemas:
     mdf["Nodes"][hdl] = { "Props":[] }
     for (p,defn) in schemas[hdl]["properties"].items():
         (ent,spec) = ent_and_spec(hdl,p,defn, schemas[hdl].get("required") or [])
+        phdl = p.translate(str.maketrans(":","_"))
         if ent == "PropDefinition":
-            mdf["Nodes"][hdl]["Props"].append(p)
-            mdf["PropDefinitions"][p] = spec
+            mdf["Nodes"][hdl]["Props"].append(phdl)
+            mdf["PropDefinitions"][phdl] = spec
         elif ent == "Relationship":
-            mdf["Relationships"][p] = spec
+            mdf["Relationships"][phdl] = spec
         else:
             warn("Failed to parse entity {} in {}".format(p, hdl))
 mdf_y = yaml.dump(mdf,default_style="'",default_flow_style=False,tags=None)
 # remove tags
-print(re.compile("!!bool '([^']+)'").sub("\\1",mdf_y))
+print(re.compile("!!(?:bool|null) '([^']+)'").sub("\\1",mdf_y))
 
 

@@ -71,7 +71,7 @@
     - 'disease_type'
     - 'dbgap_accession'
     - 'program'
-    - 'dct:title'
+    - 'dct_title'
   'Quantity':
     'Props':
     - 'value'
@@ -167,10 +167,6 @@
     'Desc': 'The link to the dbgap accession record for data associated with this
       Study. For MVP, will model this as a string, but this could be modeled as an
       external reference.'
-    'Type': 'string'
-  'dct:title':
-    'Desc': 'Official project name. Maps to dct:title.'
-    'Req': true
     'Type': 'string'
   'dct_title':
     'Desc': 'Official project name. Maps to dct:title.'
@@ -371,6 +367,7 @@
     - 'Dst': 'Project'
       'Src': 'ResearchSubject'
     'Mul': 'one_to_one'
+    'Props': null
     'Req': true
   'coding':
     'Desc': 'A reference to a code defined by a terminology system'
@@ -378,18 +375,21 @@
     - 'Dst': 'Coding'
       'Src': 'CodeableConcept'
     'Mul': 'one_to_many'
+    'Props': null
   'comparator':
     'Desc': 'How to understand the value  . . .   < | <= | >= | >'
     'Ends':
     - 'Dst': 'Coding'
       'Src': 'Quantity'
     'Mul': 'one_to_one'
+    'Props': null
   'data_use_limitation':
     'Desc': 'Ontology reference to DUO'
     'Ends':
     - 'Dst': 'ExternalReference'
       'Src': 'Dataset'
     'Mul': 'one_to_one'
+    'Props': null
     'Req': true
   'data_use_restriction':
     'Desc': 'Ontology reference to DUO'
@@ -397,6 +397,7 @@
     - 'Dst': 'ExternalReference'
       'Src': 'Dataset'
     'Mul': 'one_to_one'
+    'Props': null
   'derived_from_subject':
     'Desc': 'The Patient/ResearchSubject, or Biologically Derived Materal (e.g. a
       cell line, tissue culture, organoid) from which the specimen was directly or
@@ -405,18 +406,21 @@
     - 'Dst': 'Patient'
       'Src': 'Specimen'
     'Mul': 'one_to_one'
+    'Props': null
   'diagnosis':
     'Desc': ''
     'Ends':
     - 'Dst': 'Diagnosis'
       'Src': 'ResearchSubject'
     'Mul': 'one_to_many'
+    'Props': null
   'file':
     'Desc': ''
     'Ends':
     - 'Dst': 'File'
       'Src': 'ResearchSubject'
     'Mul': 'one_to_many'
+    'Props': null
   'identifier':
     'Desc': 'A ''business'' identifier  or accession number for the entity, typically
       as provided by an external system or authority, that persists across implementing
@@ -425,6 +429,7 @@
     - 'Dst': 'Identifier'
       'Src': 'Treatment'
     'Mul': 'one_to_many'
+    'Props': null
   'research_subject_list':
     'Desc': 'A list of ResearchSubject identities for this Patient.  We could keep
       a list of the Projects but the ResearchSubject mimics the use of case_id in
@@ -433,12 +438,14 @@
     - 'Dst': 'ResearchSubject'
       'Src': 'Patient'
     'Mul': 'one_to_many'
+    'Props': null
   'specimen':
     'Desc': ''
     'Ends':
     - 'Dst': 'Specimen'
       'Src': 'ResearchSubject'
     'Mul': 'one_to_many'
+    'Props': null
   'studies':
     'Desc': 'List of studies associated with this Project. For POC, using this model
       instead of Identifier due to confusion over type CodeableConcept; reconsider
@@ -447,17 +454,20 @@
     - 'Dst': 'Study'
       'Src': 'Project'
     'Mul': 'one_to_many'
+    'Props': null
   'treatment':
     'Desc': ''
     'Ends':
     - 'Dst': 'Treatment'
       'Src': 'Diagnosis'
     'Mul': 'one_to_many'
+    'Props': null
   'unit':
     'Desc': 'Unit representation (e.g. mg, mL)'
     'Ends':
     - 'Dst': 'Coding'
       'Src': 'Quantity'
     'Mul': 'one_to_one'
+    'Props': null
 'Terms': {}
 
