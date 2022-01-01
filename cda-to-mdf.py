@@ -87,7 +87,6 @@ mdf = {
 
 schemas = {}
 
-    
 for j in [x for x in os.listdir(schemadir) if x.find("json") >= 0]:
     p = Path(schemadir, j)
     hdl = re.compile("(.*)[.]json$").match(p.name).group(1)
@@ -105,9 +104,29 @@ for hdl in schemas:
         phdl = p.translate(str.maketrans(":","_"))
         if ent == "PropDefinition":
             mdf["Nodes"][hdl]["Props"].append(phdl)
-            mdf["PropDefinitions"][phdl] = spec
+            if not mdf["PropDefinitions"].get(phdl):
+                mdf["PropDefinitions"][phdl] = spec
+            else:
+                warn("Additional defn for prop {}, in {}:\n{}".format(
+                    phdl, hdl, spec))
         elif ent == "Relationship":
-            mdf["Relationships"][phdl] = spec
+            if not mdf["Relationships"].get(phdl):
+                mdf["Relationships"][phdl] = spec
+            else:
+                r = mdf["Relationships"][phdl]
+                if not r.get("Mul"):
+                    if spec.get("Mul"):
+                        r["Mul"] = spec["Mul"]
+                    r["Ends"].append({x:spec["Ends"][0][x] for x in ('Src','Dst')})
+                else:
+                    if spec.get("Mul"):
+                        if r["Mul"] == spec["Mul"]:
+                            r["Ends"].append({x:spec["Ends"][0][x] for x in ('Src','Dst')})
+                        else:
+                            r["Ends"].append({x:spec["Ends"][0][x] for x in ('Src','Dst',
+                                                                  'Mul')})
+                    else:
+                        r["Ends"].append({x:spec["Ends"][0][x] for x in ('Src','Dst')})
         else:
             warn("Failed to parse entity {} in {}".format(p, hdl))
 mdf_y = yaml.dump(mdf,default_style="'",default_flow_style=False,tags=None)
